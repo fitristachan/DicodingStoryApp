@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="32dp"
+    tools:context=".stories.fragment.ProfileFragment">
+
+    <TextView
+        android:id="@+id/txt_hi"
+        style="@style/HeadlineMedium.Bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Hi, Gita!" />
+
+    <TextView
+        style="@style/TitleMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/hi_desc" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="32dp"
+        android:background="@color/gray" />
+
+    <TextView
+        style="@style/BodyMedium"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:gravity="center|start"
+        android:text="@string/settings"
+        android:textColor="@color/gray"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/btn_language"
+        style="@style/TitleMedium.Bold"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:clickable="true"
+        android:gravity="center|start"
+        android:text="@string/change_lang"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/action_logout"
+        style="@style/TitleMedium.Bold"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:clickable="true"
+        android:gravity="center|start"
+        android:text="@string/logout"
+        android:textColor="@color/warning" />
+
+</LinearLayout>

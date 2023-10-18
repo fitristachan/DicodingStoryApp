@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.dicoding.dicodingstoryapp.stories.fragment.StoriesFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_stories" />
+
+    <fragment
+        android:id="@+id/navigation_maps"
+        android:name="com.dicoding.dicodingstoryapp.stories.fragment.MapsFragment"
+        android:label="@string/maps"
+        tools:layout="@layout/fragment_maps" />
+
+    <fragment
+        android:id="@+id/navigation_add_story"
+        android:name="com.dicoding.dicodingstoryapp.stories.fragment.AddStoryFragment"
+        android:label="@string/add_story"
+        tools:layout="@layout/fragment_add_story" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.dicoding.dicodingstoryapp.stories.fragment.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile" />
+</navigation>

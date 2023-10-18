@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Dicoding Story</string>
+    <string name="welcome_to_dicoding_story">Selamat Datang di Dicoding Story!</string>
+    <string name="welcome_desc">Kamu ingin berbagi cerita soal pemrograman, tetapi tidak tahu tempat yang tepat? Tulis di Dicoding Story aja!</string>
+    <string name="fullname_hint">Nama Lengkap</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="register_title">Bergabung dengan kami!</string>
+    <string name="login_title">Lanjut berbagi cerita di sini!</string>
+    <string name="tv_login">Isi dengan informasi login kamu!</string>
+    <string name="tv_fill">Isi dengan identitas kamu!</string>
+    <string name="register">Daftar</string>
+    <string name="next_desc">tombol next</string>
+    <string name="already_have">Sudah punya akun?</string>
+    <string name="login">Masuk</string>
+    <string name="not_have">Belum punya akun?</string>
+    <string name="story_image">Gambar cerita</string>
+    <string name="add_story">Tambah Story</string>
+    <string name="profile">Profil</string>
+    <string name="home">Home</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="hi_user">Hai, </string>
+    <string name="hi_desc">Sangat menyenangkan bisa mendengar ceritamu</string>
+    <string name="change_lang">Ganti Bahasa</string>
+    <string name="logout">Keluar</string>
+    <string name="settings">PENGATURAN</string>
+    <string name="upload">Unggah</string>
+    <string name="photo_preview">Preview Gambar</string>
+    <string name="gallery">Galeri</string>
+    <string name="open_camera">Buka Kamera</string>
+    <string name="add_story_desc">Tambah deskripsi ceritamu</string>
+    <string name="empty_image_warning">Mohon tambah foto terlebih dahulu</string>
+    <string name="success">Berhasil</string>
+    <string name="error_title">Yah, ada error</string>
+    <string name="no_media">Tidak ada media yang dipilih</string>
+    <string name="no">Tidak</string>
+    <string name="yes">Iya</string>
+    <string name="logout_conf">Apakah Anda yakin ingin keluar?</string>
+    <string name="add_desc_warning">Mohon tambah deskripsi terlebih dahulu</string>
+    <string name="add_desc_photo_warning">Mohon tambah foto dan deskripsi terlebih dahulu</string>
+    <string name="email_not_correct_warning">Hmm, sepertinya ini bukan format email</string>
+    <string name="empty_email_warning">Email tidak boleh kosong</string>
+    <string name="empty_name_warning">Name tidak boleh kosong</string>
+    <string name="empty_pass_warning">Password tidak boleh kosong</string>
+    <string name="max_name_warning">Panjang maksimum 250 karakter</string>
+    <string name="min_pass_warning">Panjang minimum password 8 karakter</string>
+    <string name="max_pass_warning">Panjang maksimum password 50 karakter</string>
+    <string name="maps">Peta</string>
+</resources>

@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name" translatable="false">Dicoding Story</string>
+    <string name="welcome_to_dicoding_story">Welcome to Dicoding Story!</string>
+    <string name="welcome_desc">Do you want to share your knowledge about coding, but don\'t know the place? Just write it in Dicoding Story!</string>
+    <string name="fullname_hint">Full Name</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="register_title">Join our community!</string>
+    <string name="login_title">Continue to share your story!</string>
+    <string name="tv_login">Fill the login detail below!</string>
+    <string name="tv_fill">Fill your identity below!</string>
+    <string name="register">Register</string>
+    <string name="next_desc">next button</string>
+    <string name="already_have">Already have an account?</string>
+    <string name="login">Login</string>
+    <string name="not_have">Do not have an account yet?</string>
+    <string name="story_image">Story image</string>
+    <string name="add_story">Add Story</string>
+    <string name="profile">Profile</string>
+    <string name="home">Home</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="hi_user">Hi, </string>
+    <string name="hi_desc">Such a nice thing to hear your stories</string>
+    <string name="change_lang">Change Language</string>
+    <string name="logout">Logout</string>
+    <string name="settings">SETTINGS</string>
+    <string name="upload">Upload</string>
+    <string name="photo_preview">Photo Preview</string>
+    <string name="gallery">Gallery</string>
+    <string name="open_camera">Open Camera</string>
+    <string name="add_story_desc">Add your story description</string>
+    <string name="empty_image_warning">Please, add your image first.</string>
+    <string name="success">Success</string>
+    <string name="error_title">There are an error</string>
+    <string name="no_media">No media selected</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="logout_conf">Do you really want to log out?</string>
+    <string name="add_desc_warning">Please, add the description first</string>
+    <string name="add_desc_photo_warning">Please, add photo and description first</string>
+    <string name="email_not_correct_warning">It is not a correct email format</string>
+    <string name="empty_email_warning">Email cannot be empty</string>
+    <string name="empty_name_warning">Name cannot empty</string>
+    <string name="empty_pass_warning">Password cannot empty</string>
+    <string name="min_pass_warning">Minimum password length is 8 characters</string>
+    <string name="max_pass_warning">Maximum password length is 50 characters</string>
+    <string name="max_name_warning">Maximum name length is 250 characters</string>
+    <string name="maps">Maps</string>
+
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="MarginAll">
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+    <style name="HeadlineMedium">
+        <item name="android:textAppearance">@style/TextAppearance.Material3.HeadlineMedium</item>
+    </style>
+
+    <style name="HeadlineMedium.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TitleMedium">
+        <item name="android:textAppearance">@style/TextAppearance.Material3.TitleMedium</item>
+    </style>
+
+    <style name="TitleMedium.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="BodyMedium">
+        <item name="android:textAppearance">@style/TextAppearance.Material3.BodyMedium</item>
+    </style>
+
+</resources>

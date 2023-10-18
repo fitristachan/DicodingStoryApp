@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".auth.RegisterActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/img_register"
+                    android:layout_width="wrap_content"
+                    android:layout_height="269dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:contentDescription="@string/register_title"
+                    android:paddingStart="32dp"
+                    android:paddingEnd="32dp"
+                    android:src="@drawable/image_signup" />
+
+                <TextView
+                    android:id="@+id/tv_join"
+                    style="@style/HeadlineMedium.Bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:alpha="0"
+                    android:paddingStart="32dp"
+                    android:paddingEnd="32dp"
+                    android:text="@string/register_title"
+                    android:textColor="@color/main_dark"
+                    tools:alpha="100" />
+
+                <TextView
+                    android:id="@+id/tv_fill"
+                    style="@style/TitleMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="18dp"
+                    android:alpha="0"
+                    android:paddingStart="32dp"
+                    android:paddingEnd="32dp"
+                    android:text="@string/tv_fill"
+                    android:textColor="@color/main_dark"
+                    tools:alpha="100" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txt_layoutName"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:alpha="0"
+                    android:hint="@string/fullname_hint"
+                    android:paddingStart="32dp"
+                    android:paddingEnd="32dp"
+                    app:startIconDrawable="@drawable/baseline_person_24"
+                    tools:alpha="100">
+
+                    <com.dicoding.dicodingstoryapp.customview.MyFullNameEdt
+                        android:id="@+id/ed_register_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="32dp"
+                        android:paddingEnd="32dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txt_layoutEmail"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:alpha="0"
+                    android:hint="@string/email_hint"
+                    android:paddingStart="32dp"
+                    android:paddingEnd="32dp"
+                    app:errorEnabled="true"
+                    app:startIconDrawable="@drawable/baseline_email_24"
+                    tools:alpha="100">
+
+                    <com.dicoding.dicodingstoryapp.customview.MyEmailEdt
+                        android:id="@+id/ed_register_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        android:paddingStart="32dp"
+                        android:paddingEnd="32dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txt_layoutPassword"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:alpha="0"
+                    android:hint="@string/password_hint"
+                    android:paddingStart="32dp"
+                    android:paddingEnd="32dp"
+                    app:errorEnabled="true"
+                    app:passwordToggleEnabled="true"
+                    app:startIconDrawable="@drawable/baseline_lock_24"
+                    tools:alpha="100">
+
+                    <com.dicoding.dicodingstoryapp.customview.MyPasswordEdt
+                        android:id="@+id/ed_register_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:paddingStart="32dp"
+                        android:paddingEnd="32dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.dicoding.dicodingstoryapp.customview.MyButton
+                    android:id="@+id/btn_register"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="24dp"
+                    android:alpha="0"
+                    android:clickable="true"
+                    android:enabled="false"
+                    android:text="@string/register"
+                    android:textStyle="bold"
+                    tools:alpha="100" />
+
+                <LinearLayout
+                    android:id="@+id/layout_btnLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="24dp"
+                    android:alpha="0"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    tools:alpha="100">
+
+                    <TextView
+                        style="@style/TitleMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:gravity="end|center"
+                        android:text="@string/already_have" />
+
+                    <Space
+                        android:layout_width="4dp"
+                        android:layout_height="match_parent" />
+
+                    <TextView
+                        android:id="@+id/btn_login"
+                        style="@style/TitleMedium.Bold"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:text="@string/login"
+                        android:textColor="?attr/colorSecondaryVariant" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                tools:visibility="visible" />
+        </FrameLayout>
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/img_wave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="center"
+        android:src="@drawable/wave" />
+</LinearLayout>
