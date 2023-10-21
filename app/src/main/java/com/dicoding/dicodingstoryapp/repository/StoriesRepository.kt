@@ -3,7 +3,6 @@ package com.dicoding.dicodingstoryapp.repository
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.dicoding.dicodingstoryapp.datastore.UserPreference
 import com.dicoding.dicodingstoryapp.retrofit.api.ApiService
 import com.dicoding.dicodingstoryapp.retrofit.response.AddStoryResponse
 import com.dicoding.dicodingstoryapp.retrofit.response.ErrorResponse
@@ -17,7 +16,7 @@ import retrofit2.Response
 
 
 class StoriesRepository private constructor(
-    private val apiService: ApiService, private val pref: UserPreference
+    private val apiService: ApiService
 ) {
     private val _storiesResponse = MutableLiveData<StoriesResponse>()
     private val storiesResponse: LiveData<StoriesResponse> = _storiesResponse
@@ -34,40 +33,14 @@ class StoriesRepository private constructor(
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    fun getStories(): LiveData<StoriesResponse> {
+    fun addStory(
+        description: RequestBody, lat: RequestBody?, lon: RequestBody?, file: MultipartBody.Part
+    ): LiveData<AddStoryResponse> {
         _isLoading.value = true
         _errorMessage.value = ""
         _successMessage.value = ""
 
-        val client = apiService.getStories()
-
-        client.enqueue(object : Callback<StoriesResponse> {
-            override fun onResponse(
-                call: Call<StoriesResponse>, response: Response<StoriesResponse>
-            ) {
-                _isLoading.value = false
-                if (response.isSuccessful) {
-                    _storiesResponse.value = response.body()
-                    _successMessage.value = response.message().toString()
-                } else {
-                    _errorMessage.value = response.errorBody()?.toString()
-                }
-            }
-
-            override fun onFailure(call: Call<StoriesResponse>, t: Throwable) {
-                _isLoading.value = false
-                _errorMessage.value = t.message.toString()
-            }
-        })
-        return storiesResponse
-    }
-
-    fun addStory(description: RequestBody, file: MultipartBody.Part): LiveData<AddStoryResponse> {
-        _isLoading.value = true
-        _errorMessage.value = ""
-        _successMessage.value = ""
-
-        val client = apiService.addStory(file, description)
+        val client = apiService.addStory(file, description, lat, lon)
 
         client.enqueue(object : Callback<AddStoryResponse> {
             override fun onResponse(
@@ -98,7 +71,7 @@ class StoriesRepository private constructor(
         return addStoryResponse
     }
 
-    fun getStoriesWithLocation(): LiveData<StoriesResponse>{
+    fun getStoriesWithLocation(): LiveData<StoriesResponse> {
         _isLoading.value = true
         _errorMessage.value = ""
         _successMessage.value = ""
@@ -130,9 +103,9 @@ class StoriesRepository private constructor(
         @Volatile
         private var instance: StoriesRepository? = null
         fun getInstance(
-            apiService: ApiService, pref: UserPreference
+            apiService: ApiService
         ): StoriesRepository = instance ?: synchronized(this) {
-            instance ?: StoriesRepository(apiService, pref)
+            instance ?: StoriesRepository(apiService)
         }.also { instance = it }
     }
 }

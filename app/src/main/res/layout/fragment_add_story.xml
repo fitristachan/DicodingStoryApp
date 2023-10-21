@@ -8,7 +8,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:padding="32dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -56,12 +56,12 @@
                 android:id="@+id/edtfield_desc"
                 style="@style/Widget.Material3.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="170dp"
                 android:layout_marginTop="32dp"
                 android:hint="@string/add_story_desc"
                 android:scaleType="centerCrop"
                 android:textAlignment="textStart"
-                app:layout_constraintBottom_toTopOf="@+id/btn_upload"
+                app:boxBackgroundColor="@color/teal_diss"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layout_addPhoto">
@@ -74,6 +74,17 @@
                     android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
+            <CheckBox
+                android:id="@+id/checkBox_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/add_location"
+                app:layout_constraintBottom_toTopOf="@+id/button_add"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtfield_desc" />
 
             <com.dicoding.dicodingstoryapp.customview.MyButton
                 android:id="@+id/button_add"
@@ -88,7 +99,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edtfield_desc" />
+                app:layout_constraintTop_toBottomOf="@+id/checkBox_location" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ProgressBar

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.dicoding.dicodingstoryapp.stories.fragment.StoriesFragment"
+        android:name="com.dicoding.dicodingstoryapp.stories.fragment.StoriesPagingFragment"
         android:label="@string/home"
         tools:layout="@layout/fragment_stories" />
 

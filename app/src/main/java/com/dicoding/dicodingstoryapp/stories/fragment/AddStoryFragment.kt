@@ -2,6 +2,8 @@ package com.dicoding.dicodingstoryapp.stories.fragment
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import com.dicoding.dicodingstoryapp.R
 import com.dicoding.dicodingstoryapp.databinding.FragmentAddStoryBinding
@@ -20,6 +23,7 @@ import com.dicoding.dicodingstoryapp.stories.utils.reduceFileImage
 import com.dicoding.dicodingstoryapp.stories.utils.uriToFile
 import com.dicoding.dicodingstoryapp.viewmodel.StoriesViewModel
 import com.dicoding.dicodingstoryapp.viewmodel.StoriesViewModelFactory
+import com.google.android.gms.location.LocationServices
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -29,9 +33,12 @@ import okhttp3.RequestBody.Companion.toRequestBody
 class AddStoryFragment : Fragment() {
 
     private lateinit var binding: FragmentAddStoryBinding
-    private lateinit var requestBody: RequestBody
+    private lateinit var desc: RequestBody
+    private var lat: RequestBody? = null
+    private var lon: RequestBody? = null
     private lateinit var multipartBody: MultipartBody.Part
     private var currentImageUri: Uri? = null
+
     private val storiesViewModel by viewModels<StoriesViewModel> {
         StoriesViewModelFactory.getInstance(requireActivity().application)
     }
@@ -39,6 +46,7 @@ class AddStoryFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
+        getMyLocation()
         binding = FragmentAddStoryBinding.inflate(inflater, container, false)
 
         binding.btnGallery.setOnClickListener {
@@ -49,12 +57,34 @@ class AddStoryFragment : Fragment() {
             startCamera()
         }
 
+        binding.checkBoxLocation.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                val fineLocationPermission = ContextCompat.checkSelfPermission(
+                    requireContext().applicationContext,
+                    android.Manifest.permission.ACCESS_FINE_LOCATION
+                ) == PackageManager.PERMISSION_GRANTED
+
+                val coarseLocationPermission = ContextCompat.checkSelfPermission(
+                    requireContext().applicationContext,
+                    android.Manifest.permission.ACCESS_COARSE_LOCATION
+                ) == PackageManager.PERMISSION_GRANTED
+
+                if (fineLocationPermission || coarseLocationPermission) {
+                    binding.checkBoxLocation.isChecked = true
+                } else {
+                    showPositiveAlert(getString(R.string.location_warn), "OK")
+                    binding.checkBoxLocation.isChecked = false
+                }
+            }
+        }
+
         storiesViewModel.isLoading.observe(requireActivity()) { isLoading ->
             showLoading(isLoading)
         }
 
         binding.buttonAdd.setOnClickListener {
             val description = binding.edAddDescription.text.toString()
+            desc = description.toRequestBody("text/plain".toMediaType())
 
             if (currentImageUri == null && description.isEmpty()) {
                 showPositiveAlert(getString(R.string.add_desc_photo_warning), "Ok")
@@ -63,17 +93,15 @@ class AddStoryFragment : Fragment() {
             } else if (currentImageUri == null) {
                 showPositiveAlert(getString(R.string.empty_image_warning), "Ok")
             } else {
-                currentImageUri?.let {
-                    val imageFile = uriToFile(it, requireContext()).reduceFileImage()
-
-                    requestBody = description.toRequestBody("text/plain".toMediaType())
-                    val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())
-                    multipartBody = MultipartBody.Part.createFormData(
-                        "photo", imageFile.name, requestImageFile
-                    )
+                if (binding.checkBoxLocation.isChecked) {
+                    getCurrentImage()
+                    storiesViewModel.addStory(desc, lat, lon, multipartBody)
+                        .observe(requireActivity()) {}
+                } else {
+                    getCurrentImage()
+                    storiesViewModel.addStory(desc, lat, lon, multipartBody)
+                        .observe(requireActivity()) {}
                 }
-
-                storiesViewModel.addStory(requestBody, multipartBody).observe(requireActivity()) {}
 
                 storiesViewModel.getSuccessMessage().observe(requireActivity()) { successMessage ->
                     if (successMessage.isNotEmpty()) {
@@ -144,6 +172,16 @@ class AddStoryFragment : Fragment() {
         }
     }
 
+    private fun getCurrentImage() {
+        currentImageUri?.let {
+            val imageFile = uriToFile(it, requireContext()).reduceFileImage()
+            val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())
+            multipartBody = MultipartBody.Part.createFormData(
+                "photo", imageFile.name, requestImageFile
+            )
+        }
+    }
+
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
@@ -159,4 +197,37 @@ class AddStoryFragment : Fragment() {
         alertDialog.show()
     }
 
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            getMyLocation()
+        }
+    }
+
+    private fun getMyLocation() {
+        val fineLocationPermission = ContextCompat.checkSelfPermission(
+            requireContext().applicationContext, android.Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+
+        val coarseLocationPermission = ContextCompat.checkSelfPermission(
+            requireContext().applicationContext, android.Manifest.permission.ACCESS_COARSE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+
+        if (fineLocationPermission || coarseLocationPermission) {
+            val fusedLocationClient =
+                LocationServices.getFusedLocationProviderClient(requireActivity())
+            fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
+                if (location != null) {
+                    val latitude = location.latitude.toFloat()
+                    val longitude = location.longitude.toFloat()
+
+                    lat = latitude.toString().toRequestBody("text/plain".toMediaType())
+                    lon = longitude.toString().toRequestBody("text/plain".toMediaType())
+                }
+            }
+        } else {
+            requestPermissionLauncher.launch(android.Manifest.permission.ACCESS_FINE_LOCATION)
+        }
+    }
 }

@@ -47,4 +47,7 @@
     <string name="min_pass_warning">Panjang minimum password 8 karakter</string>
     <string name="max_pass_warning">Panjang maksimum password 50 karakter</string>
     <string name="maps">Peta</string>
+    <string name="add_location">Tambah lokasimu</string>
+    <string name="location_warn">Kamu tidak memberi izin untuk mengakses lokasimu. Tolong beri izin terlebih dahulu dengan mengatur izin aplikasi pada Pengaturan.</string>
+    <string name="retry">Coba lagi</string>
 </resources>

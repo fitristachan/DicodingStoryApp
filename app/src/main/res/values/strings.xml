@@ -46,5 +46,7 @@
     <string name="max_pass_warning">Maximum password length is 50 characters</string>
     <string name="max_name_warning">Maximum name length is 250 characters</string>
     <string name="maps">Maps</string>
-
+    <string name="add_location">Add your location</string>
+    <string name="location_warn">You did not give us your location permission. Please, allow location permission on your device Setting first.</string>
+    <string name="retry">Try Again</string>
 </resources>

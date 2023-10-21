@@ -8,11 +8,15 @@ import okhttp3.RequestBody
 
 class StoriesViewModel(private val storiesRepository: StoriesRepository) : ViewModel() {
 
-    fun getStories() = storiesRepository.getStories()
     val isLoading: LiveData<Boolean> = storiesRepository.isLoading
 
-    fun addStory(description: RequestBody, file: MultipartBody.Part) =
-        storiesRepository.addStory(description, file)
+    fun addStory(
+        description: RequestBody,
+        lat: RequestBody?,
+        lon: RequestBody?,
+        file: MultipartBody.Part
+    ) =
+        storiesRepository.addStory(description, lat, lon, file)
 
     fun getStoriesWithLocation() = storiesRepository.getStoriesWithLocation()
 
