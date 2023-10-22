@@ -58,6 +58,26 @@ class StoriesPagingViewModelTest {
         assertEquals(dummyStories.size, differ.snapshot().size)
         assertEquals(dummyStories[0], differ.snapshot()[0])
     }
+
+    @Test
+    fun `when stories empty should return no data` () = runTest {
+        val data: PagingData<ListStoryItem> = PagingData.from(emptyList())
+        val expectedStories = MutableLiveData<PagingData<ListStoryItem>>()
+        expectedStories.value = data
+
+        `when`(storiesPagingRepository.getStories()).thenReturn(expectedStories)
+        val storiesPagingViewModel = StoriesPagingViewModel(storiesPagingRepository)
+        val actualStories: PagingData<ListStoryItem> = storiesPagingViewModel.getStories.getOrAwaitValue()
+
+        val differ = AsyncPagingDataDiffer(
+            diffCallback = StoriesPagingAdapter.DIFF_CALLBACK,
+            updateCallback = noopListUpdateCallback,
+            workerDispatcher = Dispatchers.Main,
+        )
+        differ.submitData(actualStories)
+        assertEquals(0, differ.snapshot().size)
+    }
+
 }
 
 class StoriesPagingSource : PagingSource<Int, LiveData<List<ListStoryItem>>>() {
